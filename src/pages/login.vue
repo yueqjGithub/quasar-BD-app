@@ -94,6 +94,8 @@ export default {
             vm.$q.notify('登录失败，请稍后再试')
             vm.btnLoading = false
           })
+        } else {
+          vm.btnLoading = false
         }
       })
     }
