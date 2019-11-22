@@ -1,0 +1,98 @@
+// app global css in SCSS form
+@import 'quasar.variables';
+$grey-border: 1px solid #e0e0e0;
+:root{
+  margin: 0;
+  padding: 0;
+}
+*{
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style: none;
+}
+
+.text-center{
+  text-align: center;
+}
+.font-big{
+  font-size: 2rem;
+}
+.font-mid{
+  font-size: 1.5rem;
+}
+.font-sm{
+  font-size: 1rem;
+}
+.font-xs{
+  font-size: .8rem;
+}
+
+.bgs{background-color: #f5f4f9;}
+
+.custom-card{
+  background: #ffffff;
+  border: $grey-border;
+}
+.custom-card + .custom-card {
+  margin-top: .8rem;
+}
+.custom-btn-group{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.custom-btn-group-item + .custom-btn-group-item{
+  margin-left: .4rem;
+}
+.custom-tit-position{
+  width: 2rem;
+}
+// 允许p等标签换行
+.word-break{
+  p, span, h1, h2, h3, h4, h5 {
+    word-break: break-word;
+  }
+}
+
+canvas{
+  border: 1px solid black;
+}
+
+// 自定义卡片块
+.custom-section{
+  background-color: #ffffff;
+}
+.custom-list-item + .custom-list-item {
+  margin-top: .8rem;
+}
+.custom-mat-sm {
+  margin-top: .5rem;
+}
+// 调整搜索栏
+.custom-border-top .q-item__section--side{
+  padding-right: 0;
+}
+
+// li-无border-有margin-flext-start对齐
+.custom-list-no-border{
+  display: flex;
+  margin: 0 0 .5rem 0;
+}
+.custom-list-border-bottom{
+  display: flex;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: .5rem;
+}
+.custom-flex-start{
+  justify-content: flex-start;
+  align-items: center;
+}
+.custom-flex-between{
+  justify-content: space-between;
+  align-items: center;
+}
+//--------------单独tit行--------------
+.custom-tit-along-line{
+  margin: .4rem 0;
+}
