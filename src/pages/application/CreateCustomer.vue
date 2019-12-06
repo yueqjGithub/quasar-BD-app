@@ -39,9 +39,6 @@
                 placeholder="请输入法人姓名"
                 :no-error-icon="true"
                 :hide-bottom-space="true"
-                :rules="[
-                  val => !!val || '请输入法人姓名'
-                ]"
               ></q-input>
             </q-item-section>
           </q-item>
@@ -49,6 +46,10 @@
             <q-item-section>
               <span class="font-sm">法人身份证号</span>
             </q-item-section>
+<!--            :rules="[-->
+<!--            val => !!val || '请输入法人身份证号',-->
+<!--            val => (/^[1-9]\d{5}(18|19|20|(3\d))\d{2}((0[1-9])|(1[0-2]))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/.test(val)) || '身份证格式错误'-->
+<!--            ]"-->
             <q-item-section side>
               <q-input
                 dense
@@ -57,11 +58,8 @@
                 :no-error-icon="true"
                 :hide-bottom-space="true"
                 placeholder="请输入法人身份证号"
-                :rules="[
-                  val => !!val || '请输入法人身份证号',
-                  val => (/^[1-9]\d{5}(18|19|20|(3\d))\d{2}((0[1-9])|(1[0-2]))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/.test(val)) || '身份证格式错误'
-                ]"
-                lazy-rule
+                :error="!validateID"
+                error-message="身份证格式错误"
               ></q-input>
             </q-item-section>
           </q-item>
@@ -77,11 +75,11 @@
                 placeholder="请输入手机号"
                 :no-error-icon="true"
                 :hide-bottom-space="true"
-                :rules="[
-                    val => !!val || '请输入手机号',
-                    val => (/^(((13[0-9]{1})|(14[0-9]{1})|(15[0-9]{1})|(16[0-9]{1})|(18[0-9]{1})|(19[0-9]{1})|(17[0-9]{1}))+\d{8})$/.test(val)) || '手机号格式错误'
-                  ]"
               ></q-input>
+<!--              :rules="[-->
+<!--              val => !!val || '请输入手机号',-->
+<!--              val => (/^(((13[0-9]{1})|(14[0-9]{1})|(15[0-9]{1})|(16[0-9]{1})|(18[0-9]{1})|(19[0-9]{1})|(17[0-9]{1}))+\d{8})$/.test(val)) || '手机号格式错误'-->
+<!--              ]"-->
             </q-item-section>
           </q-item>
           <q-item v-if="editType === 1">
@@ -96,32 +94,93 @@
                 placeholder="请输入初始密码"
                 :no-error-icon="true"
                 :hide-bottom-space="true"
-                :rules="[
-                  val => !!val || '请输入初始密码',
-                ]"
+              ></q-input>
+            </q-item-section>
+          </q-item>
+          <!---------------------------------银行信息--------------------------------->
+          <q-item>
+            <q-item-section>
+              <span class="font-sm">银行户主</span>
+            </q-item-section>
+            <q-item-section side>
+              <q-input
+                dense
+                borderless
+                v-model="form.account_owner"
+                placeholder="请输入银行户主"
+                :no-error-icon="true"
+                :hide-bottom-space="true"
               ></q-input>
             </q-item-section>
           </q-item>
           <q-item>
             <q-item-section>
-              <span class="font-sm">佣金规则</span>
+              <span class="font-sm">银行账号</span>
             </q-item-section>
             <q-item-section side>
-              <q-select borderless v-model="form.commission" :options="selectArr.ruleArr" color="primary" emit-value map-options
-                        dense
-                        :rules="[
-                        val => !!val || '请选择佣金规则'
-                        ]"
-              >
-              </q-select>
+              <q-input
+                dense
+                borderless
+                v-model="form.bank_account"
+                placeholder="请输入银行账号"
+                :no-error-icon="true"
+                :hide-bottom-space="true"
+              ></q-input>
             </q-item-section>
           </q-item>
+          <q-item>
+            <q-item-section>
+              <span class="font-sm">银行名称</span>
+            </q-item-section>
+            <q-item-section side>
+              <q-input
+                dense
+                borderless
+                v-model="form.bank_name"
+                placeholder="请输入银行名称"
+                :no-error-icon="true"
+                :hide-bottom-space="true"
+              ></q-input>
+            </q-item-section>
+          </q-item>
+          <q-item>
+            <q-item-section>
+              <span class="font-sm">开户行名称</span>
+            </q-item-section>
+            <q-item-section side>
+              <q-input
+                dense
+                borderless
+                v-model="form.bank_branch"
+                placeholder="请输入开户行支行名称"
+                :no-error-icon="true"
+                :hide-bottom-space="true"
+              ></q-input>
+            </q-item-section>
+          </q-item>
+          <!---------------------------------银行信息--------------------------------->
+<!--          <q-item>-->
+<!--            <q-item-section>-->
+<!--              <span class="font-sm">佣金规则</span>-->
+<!--            </q-item-section>-->
+<!--            <q-item-section side>-->
+<!--              <q-select borderless v-model="form.commission" :options="selectArr.ruleArr" color="primary" emit-value map-options-->
+<!--                        dense-->
+<!--              >-->
+<!--              </q-select>-->
+<!--            </q-item-section>-->
+<!--          </q-item>-->
           <q-item>
             <q-item-section>
               <span class="font-sm">法人身份证正面</span>
             </q-item-section>
             <q-item-section side>
-              <div @click="updateImg('idcard_photo_1')">
+              <q-spinner-ios
+                color="primary"
+                size="2em"
+                v-if="loadList.idcard_photo_1"
+              />
+              <div @click="updateImg('idcard_photo_1')" v-if="!loadList.idcard_photo_1">
                 <span v-if="!form.idcard_photo_1" class="text-grey">未上传</span>
                 <span v-else class="text-primary">已上传</span>
               </div>
@@ -139,7 +198,12 @@
 <!--&lt;!&ndash;                <span class="font-big text-white" v-if="!form.idcard_photo_2">+</span>&ndash;&gt;-->
 <!--&lt;!&ndash;                <img :src="form.idcard_photo_2" alt="" v-else>&ndash;&gt;-->
 <!--              </q-avatar>-->
-              <div @click="updateImg('idcard_photo_2')" class="text-grey">
+              <q-spinner-ios
+                color="primary"
+                size="2em"
+                v-if="loadList.idcard_photo_2"
+              />
+              <div @click="updateImg('idcard_photo_2')" class="text-grey" v-if="!loadList.idcard_photo_2">
                 <span v-if="!form.idcard_photo_2" class="text-grey">未上传</span>
                 <span v-else class="text-primary">已上传</span>
               </div>
@@ -153,7 +217,12 @@
               <span class="font-sm">营业执照照片</span>
             </q-item-section>
             <q-item-section side>
-              <div @click="updateImg('business_license')">
+              <q-spinner-ios
+                color="primary"
+                size="2em"
+                v-if="loadList.business_license"
+              />
+              <div @click="updateImg('business_license')" v-if="!loadList.business_license">
                 <span v-if="!form.business_license" class="text-grey">未上传</span>
                 <span v-else class="text-primary">已上传</span>
               </div>
@@ -202,8 +271,8 @@
           </q-item>
         </q-list>
         <div class="q-pa-md">
-          <q-btn class="full-width" color="primary" v-if="editType === 1 || (editType === 2 && form.check_status === 0)" @click="saveDraft" :loading="btnLoading">保存为草稿</q-btn>
-          <q-btn class="full-width" color="primary" @click="subCompanyInfo" :loading="btnLoading">提交平台审核</q-btn>
+          <q-btn class="full-width" color="primary" v-if="editType === 1 || (editType === 2 && form.check_status === 0)" @click="saveDraft" :disable="btnLoading">保存为草稿</q-btn>
+          <q-btn class="full-width" color="primary" @click="subCompanyInfo" :disable="btnLoading">提交平台审核</q-btn>
         </div>
       </q-form>
       <!-----------------------------关联门店---------------------------------------------->
@@ -291,7 +360,7 @@ export default {
         company_name: '',
         legal_person: '',
         check_status: undefined, // 从修改进入时需要把check_status带过来赋值，控制保存到草稿按钮的显示
-        commission: '',
+        // commission: '',
         idcard_no: '',
         mobile: '',
         password: '888888',
@@ -305,8 +374,30 @@ export default {
         lat: 30.55055,
         lng: 104.06502,
         company_address: '',
-        clues_list: []
+        clues_list: [],
+        account_owner: '',
+        bank_account: '',
+        bank_name: '', // 银行名称
+        bank_branch: '' // 分行名称
+      },
+      loadList: {
+        idcard_photo_1: false,
+        idcard_photo_2: false,
+        business_license: false
       }
+    }
+  },
+  computed: {
+    validateID () {
+      let type = true
+      let vm = this
+      if (this.form.idcard_no !== '') {
+        let reg = /^[1-9]\d{5}(18|19|20|(3\d))\d{2}((0[1-9])|(1[0-2]))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/
+        if (!reg.test(vm.form.idcard_no)) {
+          type = false
+        }
+      }
+      return type
     }
   },
   created () {
@@ -331,7 +422,7 @@ export default {
       if (code === 'success') {
         let arr = []
         for (let k in res.list) {
-          arr.push({ label: res.list[k].rule, value: res.list[k].id })
+          arr.push({ label: res.list[k].rule, value: res.list[k].rule })
         }
         this.selectArr.ruleArr = [...arr]
       } else {
@@ -411,7 +502,11 @@ export default {
         'lat': vm.form.lat,
         'lng': vm.form.lng,
         'company_address': vm.form.company_address,
-        'clues_list': vm.form.clues_list
+        'clues_list': vm.form.clues_list,
+        'bank_name': vm.form.bank_name,//银行名称
+        'bank_branch': vm.form.bank_branch,//分行名称
+        'bank_account': vm.form.bank_account,//银行账户
+        'account_owner': vm.form.account_owner//银行户主
       }
       let URL = ''
       if (vm.editType === 1) {
@@ -446,8 +541,8 @@ export default {
       this.$refs['myForm'].validate().then(suc => {
         if (suc) {
           let dictionary = {
-            'idcard_photo_1': '法人身份证正面未上传',
-            'idcard_photo_2': '法人身份证反面未上传',
+            // 'idcard_photo_1': '法人身份证正面未上传',
+            // 'idcard_photo_2': '法人身份证反面未上传',
             'business_license': '营业执照照片未上传',
             'e_contract_address': '电子合同未签约'
           }
@@ -468,7 +563,7 @@ export default {
           let params = {
             'legal_person': vm.form.legal_person, // 法人名称
             'check_status': 1, // 审核状态:草稿0,待审核1,审核未通过2,审核通过3
-            'commission': vm.form.commission, // 佣金
+            // 'commission': vm.form.commission, // 佣金
             'business_license': vm.form.business_license,
             'idcard_photo_1': vm.form.idcard_photo_1,
             'idcard_photo_2': vm.form.idcard_photo_2,
@@ -482,7 +577,11 @@ export default {
             'lat': vm.form.lat,
             'lng': vm.form.lng,
             'company_address': vm.form.company_address,
-            'clues_list': vm.form.clues_list
+            'clues_list': vm.form.clues_list,
+            'bank_name': vm.form.bank_name,//银行名称
+            'bank_branch': vm.form.bank_branch,//分行名称
+            'bank_account': vm.form.bank_account,//银行账户
+            'account_owner': vm.form.account_owner//银行户主
           }
           let URL = ''
           if (vm.editType === 1) {
@@ -563,6 +662,7 @@ export default {
           fileName: file.name,
           fileData: reader.result
         }
+        vm.loadList[obj] = true
         vm.$axios(urls.uploadImg, params).then(res => {
           if (res.code === 'success') {
             // vm.form.imgUrl = res.url
@@ -570,8 +670,10 @@ export default {
           } else {
             vm.$q.notify(res.message)
           }
+          vm.loadList[obj] = false
         }, () => {
           // console.log(err)
+          vm.loadList[obj] = false
         })
       }
     },
@@ -604,17 +706,21 @@ export default {
                 fileName: `${Math.random()}pic`,
                 fileData: `data:image/jpeg;base64,${data}`
               }
+              vm.loadList[obj] = true
               vm.$axios(urls.uploadImg, params).then(res => {
                 if (res.code === 'success') {
                   vm.form[obj] = `data:image/jpeg;base64,${data}`
                 } else {
                   vm.$q.notify(res.message)
                 }
+                vm.loadList[obj] = false
               }, () => {
+                vm.loadList[obj] = false
                 this.$q.notify('上传出错，请检查网络是否通畅')
               })
             },
             () => { // on fail
+              vm.loadList[obj] = false
             },
             {
               quality: 50,
@@ -624,7 +730,7 @@ export default {
           /* eslint-disable */
         }
       }).onCancel(() => {
-
+        vm.loadList[obj] = false
       })
     },
     init_lineCanvas () { // 生成签字板

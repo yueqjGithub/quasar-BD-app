@@ -36,10 +36,11 @@
         <q-card-section>
           <div class="code-list">
             <div class="pay-type">
-              <q-img
-                class="pay-code"
-                :src="wxCodeSrc"
-              ></q-img>
+<!--              <q-img-->
+<!--                class="pay-code"-->
+<!--                :src="wxCodeSrc"-->
+<!--              ></q-img>-->
+              <img :src="`https://${wxCodeSrc}`" alt="" class="pay-code">
               <span>微信</span>
             </div>
           </div>

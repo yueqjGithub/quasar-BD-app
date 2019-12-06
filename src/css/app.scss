@@ -5,6 +5,9 @@ $grey-border: 1px solid #e0e0e0;
   margin: 0;
   padding: 0;
 }
+html{
+  font-size: 62.5%;
+}
 *{
   margin: 0;
   padding: 0;
@@ -19,13 +22,13 @@ $grey-border: 1px solid #e0e0e0;
   font-size: 2rem;
 }
 .font-mid{
-  font-size: 1.5rem;
+  font-size: 1.8rem;
 }
 .font-sm{
-  font-size: 1rem;
+  font-size: 1.4rem;
 }
 .font-xs{
-  font-size: .8rem;
+  font-size: 1.2rem;
 }
 
 .bgs{background-color: #f5f4f9;}
@@ -95,4 +98,59 @@ canvas{
 //--------------单独tit行--------------
 .custom-tit-along-line{
   margin: .4rem 0;
+}
+//-----------------支付二维码大小--------------------
+.pay-code{
+  width: 200px;
+  height: 200px;
+}
+/*-------------------公用flex-------------------*/
+.flex-space-between{
+  justify-content: space-between;
+}
+.flex-space-around{
+  justify-content: space-around;
+}
+
+.flex-row{
+  display: flex;
+  flex-direction: row;
+}
+.flex-column{
+  display: flex;
+  flex-direction: column;
+}
+.flex-just-start{
+  justify-content: flex-start;
+}
+.flex-align-center{
+  align-items: center;
+}
+.flex-align-start{
+  align-items: flex-start;
+}
+.flex-align-baseline{
+  align-items: baseline;
+}
+/*-------------------------自定义头------------------------------*/
+.my-header{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+.my-header-l{
+  flex: 1;
+  text-align: left;
+}
+.my-header-m{
+  flex: 3;
+  font-size: 1.8rem;
+}
+.my-header-r{
+  flex: 1;
+  text-align: right;
+}
+.no-wrap{
+  white-space: nowrap;
 }

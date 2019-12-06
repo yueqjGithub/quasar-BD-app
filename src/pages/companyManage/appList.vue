@@ -7,32 +7,28 @@
         <span class="custom-tit-position"></span>
       </q-toolbar>
     </q-header>
-    <div class="custom-list-item custom-section custom-mat-sm">
-      <q-item clickable v-ripple @click="toLink('StoreList')">
-        <q-item-section side>
-          <q-icon name="fa fa-map-marker" :size="iconSize"></q-icon>
-        </q-item-section>
-        <q-item-section>
-          <span class="mine-list-tit">门店</span>
-        </q-item-section>
-        <q-item-section side>
-          <q-icon name="fa fa-chevron-right" :size="iconSize"></q-icon>
-        </q-item-section>
-      </q-item>
-    </div>
-    <div class="custom-list-item custom-section custom-mat-sm">
-      <q-item clickable v-ripple @click="toLink('CouponList')">
-        <q-item-section side>
-          <q-icon name="img:https://pic.iidingyun.com/8696022/upload/merchantapp/icon1@2x.png" :size="iconSize"></q-icon>
-        </q-item-section>
-        <q-item-section>
-          <span class="mine-list-tit">优惠券</span>
-        </q-item-section>
-        <q-item-section side>
-          <q-icon name="fa fa-chevron-right" :size="iconSize"></q-icon>
-        </q-item-section>
-      </q-item>
-    </div>
+    <q-page>
+      <div class="custom-list-item custom-section custom-mat-sm">
+        <q-item clickable v-ripple @click="toLink('StoreList')">
+          <q-item-section>
+            <div class="my-list flex-row flex-space-between flex-align-center">
+              <span class="link-word">门店管理</span>
+              <q-btn flat round icon="fa fa-chevron-right" size="sm" class="c-tips"></q-btn>
+            </div>
+          </q-item-section>
+        </q-item>
+      </div>
+      <div class="custom-list-item custom-section custom-mat-sm ma-tp">
+        <q-item clickable v-ripple @click="toLink('Product')">
+          <q-item-section>
+            <div class="my-list flex-row flex-space-between flex-align-center">
+              <span class="link-word">菜品管理</span>
+              <q-btn flat round icon="fa fa-chevron-right" size="sm" class="c-tips"></q-btn>
+            </div>
+          </q-item-section>
+        </q-item>
+      </div>
+    </q-page>
   </q-page>
 </template>
 

@@ -21,7 +21,7 @@
         联系方式：{{mode.mobile}}
       </div>
       <div class="custom-list-no-border custom-flex-start">
-        佣金规则：{{commissionRule.find(item => item.value === mode.commission).label || '未设置'}}
+        佣金规则：{{commissionRule.find(item => item.value === mode.commission) ? commissionRule.find(item => item.value === mode.commission).label : '未设置'}}
       </div>
       <div class="custom-list-no-border custom-flex-start">
         充值金额：{{mode.deposit || 0}}元

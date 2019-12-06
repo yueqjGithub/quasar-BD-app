@@ -44,7 +44,9 @@ module.exports = function (ctx) {
       //            (not treeshaking Quasar; biggest bundle size; convenient)
       all: true,
 
-      components: ['QHeader', 'QFooter', 'QPageContainer', 'QPage', 'QIcon', 'QTable', 'QTh', 'QTr', 'QTd', 'QScrollArea', 'QPullToRefresh', 'QInfiniteScroll'],
+      components: ['QHeader', 'QFooter', 'QPageContainer', 'QPage', 'QIcon', 'QTable', 'QTh', 'QTr', 'QTd', 'QScrollArea', 'QPullToRefresh', 'QInfiniteScroll', 'QSpinnerIos', 'QSpinner',
+        'QToggle'
+      ],
       directives: [],
 
       // Quasar plugins
@@ -94,7 +96,10 @@ module.exports = function (ctx) {
 
     // animations: 'all', // --- includes all animations
     // https://quasar.dev/options/animations
-    animations: [],
+    animations: [
+      'fadeIn', 'fadeOut', 'bounceInRight', 'bounceOutLeft', 'slideInUp', 'slideOutDown',
+      'slideInRight', 'slideOutLeft'
+    ],
 
     // https://quasar.dev/quasar-cli/developing-ssr/configuring-ssr
     ssr: {

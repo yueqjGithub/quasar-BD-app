@@ -37,7 +37,14 @@
       </q-tabs>
     </q-header>
     <q-page-container class="bgs">
-      <router-view />
+      <transition
+        mode="out-in"
+        appear
+        enter-active-class="animated slideInRight"
+        leave-active-class="animated slideOutLeft"
+      >
+        <router-view />
+      </transition>
     </q-page-container>
     <q-footer class="bg-white text-grey-14" bordered>
       <q-tabs no-caps  align="left" active-color="primary" indicator-color="transparent" shrink dense>

@@ -4,14 +4,23 @@ const apiList = {
   getAddres: '/api/service/common/geo.vm', // 获取经纬度
   recharge: '/api/pay/order/recharge_order.vm', // 获取充值url
   // 门店
+  getBankInfo: '/api/company/service/shop/get_bank.vm', // 获取银行信息
   createShop: '/api/company/service/shop/create.vm', // 创建门店
   updateShop: '/api/company/service/shop/update.vm', // 创建门店
+  queryShopTypeList: '/api/company/service/shop/shop_type/list.vm', // 查询门店类型列表
   queryContract: '/api/mkt2/service/mkt_contract/get_by_type.vm', // 拉取电子合同内容
   resetShopPWD: '/api/common/login/change_password.vm', // 修改门店密码
   queryCouponList: '/api/company/service/coupon/list.vm', // 拉取优惠券列表
   queryCouponShop: '/api/service/shop/get_coupon_shop.vm', // 拉取优惠券门店
   saveCreateCoupon: '/api/company/service/coupon/create.vm', // 创建优惠券
   saveUpdateCoupon: '/api/company/service/coupon/update.vm', // 编辑优惠券
+  // 菜品管理
+  queryMyProduct: '/api/mkt2/product/product/list.vm', // 查询菜品列表
+  queryTags: '/api/mkt2/product/tags/list.vm', // 查询菜品标签
+  getShops: '/api/b/shop/list.vm', // 获取发放门店
+  queryProductTypeList: '/api/mkt2/product/product/get_product_type.vm', // 菜品类型
+  editProduct: '/api/mkt2/product/product/update.vm', // 修改菜品
+  createProduct: '/api/mkt2/product/product/create.vm', // 创建菜品
   // 首页
   selectDayFromCompany: '/api/mkt2/service/mkt_clue/select_company_shop_num.vm', // 首页统计信息
   getSituation: '/api/mkt2/service/mtk_sale_performance/situation.vm', // 首页销售业绩

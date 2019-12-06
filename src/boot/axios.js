@@ -4,7 +4,7 @@ import { LocalStorage, Dialog } from 'quasar'
 // axios.defaults.withCredentials = true
 export default ({ router, Vue }) => {
   const http = axios.create({
-    baseURL: 'https://8696022.iidingyun.com',
+    baseURL: 'https://8696123.iidingyun.com',
     timeout: 15000
   })
   // request拦截器

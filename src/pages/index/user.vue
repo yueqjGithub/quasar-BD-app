@@ -64,7 +64,6 @@
       :columns="columns"
       row-key="name"
       virtual-scroll
-      :loading="showLoading2"
       :hide-bottom="true"
       table-style="max-height: 40vh"
       separator="none"

@@ -139,8 +139,8 @@ export default {
         head_person: '', //
         legal_mobile: '', //
         address: '', //
-        lat: '',
-        lng: ''
+        lat: 30.55055,
+        lng: 104.06502
       }
     }
   },

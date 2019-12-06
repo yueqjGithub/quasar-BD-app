@@ -83,7 +83,7 @@ export default {
   methods: {
     backToStoreInfo () {
       // console.log(this.saveInfo)
-      this.$router.push({ name: 'StoreInfo', params: { type: 2, shop: this.saveInfo } })
+      this.$router.push({ name: 'StoreInfo', params: { type: 2, obj: this.saveInfo } })
     },
     submit () {
       let vm = this

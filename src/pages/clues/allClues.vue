@@ -81,7 +81,7 @@
             <div class="more-label"></div>
             <div class="more-content">负责人姓名：{{detail.head_person}}</div>
           </div>
-          <div class="more-list">
+          <div class="more-list" v-if="detail.current_salesid === self || detail.status === 0">
             <div class="more-label"></div>
             <div class="more-content">负责人联系方式：{{detail.legal_mobile}}</div>
           </div>
@@ -90,6 +90,22 @@
             <div class="more-content">地址：{{detail.address}}</div>
           </div>
 <!--          <p style="margin: .3rem 0;">拜访日志：</p>-->
+          <p style="margin: .3rem 0;" v-if="detail.status === 0 || detail.current_salesid === self">拜访日志：</p>
+          <q-scroll-area class="word-break logs-content" :horizontal="false" v-if="detail.status === 0 || detail.current_salesid === self">
+            <q-btn color="negative" flat icon="fa fa-exclamation" label="暂无拜访记录" disable class="full-width" v-if="detail.logs.length < 1"></q-btn>
+            <div class="logs-item q-pa-sm" v-for="k in detail.logs" :key="k.index" v-else>
+              <div class="logs-tit">
+                <span>{{k.visit_time}}</span>
+              </div>
+              <div class="logs-tit">
+                <span>拜访对象：{{k.visit_person}}</span>
+                <span>{{k.visit_person_mobile}}</span>
+              </div>
+              <p>
+                {{k.visit_content}}
+              </p>
+            </div>
+          </q-scroll-area>
         </q-card>
         <div class="text-center q-ma-md">
           <q-btn round class="bg-white text-black" icon="fa fa-times" v-close-popup></q-btn>
@@ -122,7 +138,9 @@ export default {
       },
       user: '',
       datas: [],
-      detail: {}
+      detail: {
+        logs: []
+      }
     }
   },
   created () {
@@ -131,22 +149,30 @@ export default {
     let saleid = this.$q.localStorage.getItem('userId')
     this.user = saleid // 赋值user用作判断是否显示单条线索下的按钮
   },
+  computed: {
+    self () {
+      let a = this.$q.localStorage.getItem('userId')
+      return Number(a)
+    }
+  },
   methods: {
     showMoreDialog (obj) { // 点击更多
       let vm = this
       Object.assign(vm.detail, obj)
-      // let params = {
-      //   'bind_clue_id': obj.id
-      // }
-      // vm.$axios(urls.queryLogOfPersonalClues, params).then(res => {
-      //   let code = res.code
-      //   if (code === 'success') {
-      //     vm.detail['logs'] = [...res.list]
-      //   } else {
-      //     vm.$q.notify(res.msg)
-      //   }
-      // }, () => {
-      // })
+      if (obj.status === 0) {
+        let params = {
+          'clueid': obj.id
+        }
+        vm.$axios(urls.queryLogOfPersonalClues, params).then(res => {
+          let code = res.code
+          if (code === 'success') {
+            vm.detail['logs'] = [...res.list]
+          } else {
+            vm.$q.notify(res.msg)
+          }
+        }, () => {
+        })
+      }
       vm.showMore = true
     },
     holdInMine (k) { // 跟进

@@ -2,7 +2,7 @@
   <div class="bg-white">
     <q-toolbar class="text-white bg-primary">
       <q-toolbar-title>
-        <span class="font-sm">获取经纬度</span>
+        <span class="font-md">获取经纬度</span>
       </q-toolbar-title>
       <q-btn flat class="text-white font-md" @click="closeDialog" icon="fa fa-times"></q-btn>
     </q-toolbar>
@@ -14,7 +14,7 @@
 <!--    </div>-->
     <div class="mapDiv">
       <iframe id="mapPage" width="100%" height="100%" frameborder=0
-              :src="`https://apis.map.qq.com/tools/locpicker?search=1&type=1&key=TGSBZ-3P6WI-GG2GB-5SJBC-SQR5V-OLB6K&referer=myapp&mapdraggable=1&coord=${lat},${lng}`">
+              :src="`https://apis.map.qq.com/tools/locpicker?search=1&type=1&key=TGSBZ-3P6WI-GG2GB-5SJBC-SQR5V-OLB6K&referer='知了军团'&mapdraggable=1&coord=${lat},${lng}`">
       </iframe>
     </div>
         <div class="custom-form-btn">
@@ -43,7 +43,7 @@ export default {
   props: ['lat1', 'lng1'],
   data () {
     return {
-      lat: 30.65618,
+      lat: 40.65618,
       lng: 104.08329,
       address: '',
       map: undefined,

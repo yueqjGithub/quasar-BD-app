@@ -41,6 +41,8 @@ const routes = [
       { path: 'companydetail', name: 'CompanyDetail', component: () => import('pages/customer/detail') }, // 商户详情
       { path: 'storelist', name: 'StoreList', component: () => import('pages/companyManage/StoresList') }, // 门店列表
       { path: 'storeinfo', name: 'StoreInfo', component: () => import('pages/companyManage/StoreInfo') }, // 门店详情
+      { path: 'product', name: 'Product', component: () => import('pages/product/product') }, // 菜品列表
+      { path: 'productinfo', name: 'ProductInfo', component: () => import('pages/product/productInfo') }, // 菜品编辑
       { path: 'resetpwd', name: 'ResetPassword', component: () => import('pages/application/ResetPassword') }, // 重置门店密码
       { path: 'couponlist', name: 'CouponList', component: () => import('pages/companyManage/Coupon') }, // 优惠券列表
       { path: 'createcoupon', name: 'CreateCoupon', component: () => import('pages/companyManage/CreateCoupon') }, // 编辑优惠券
@@ -49,7 +51,6 @@ const routes = [
       { path: 'addlogs', name: 'AddLogs', component: () => import('pages/clues/addLogs') }, // 添加日志
       { path: 'visiter', name: 'Visiter', component: () => import('pages/clues/Visiter') }, // 拜访对象
       { path: 'fmap', name: 'Fmap', component: () => import('pages/application/fightMap') } // 作战地图
-
     ]
   },
   {

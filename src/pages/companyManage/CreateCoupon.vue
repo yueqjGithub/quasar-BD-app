@@ -242,7 +242,7 @@ export default {
   },
   methods: {
     goBack () {
-      this.$router.go(-1)
+      this.$router.push({ name: 'CouponList' })
     },
     reset () {
       this.$refs.input.resetValidation()
